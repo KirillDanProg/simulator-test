@@ -1,0 +1,26 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logo {
+    display: flex;
+    margin-left: 70px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo .first {
+    color: #FCFCFC;
+}
+
+.logo .sec {
+    color: #80BFFF;
+}
+.logo .logoIcon {
+    width: 30px;
+    margin-right: 3px;
+    fill: #80BFFF;
+}
