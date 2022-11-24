@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const StyledStartPage = styled.div`
-  gap: 100px;
-
+  height: 100vh;
+  
   h1 {
     text-align: center;
     font-size: 22px;
     font-weight: 600;
     line-height: 25px;
+    margin-top: 30px;
   }
 
   .img {
     max-width: 400px;
-    margin: 100px;
     border-radius: 15px;
     cursor: pointer;
     box-shadow: 2px 2px 5px lightgray;

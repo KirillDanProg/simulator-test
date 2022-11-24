@@ -8,7 +8,6 @@ const StyledCheckbox = styled.div`
   .container {
     display: block;
     position: relative;
-    margin-bottom: 12px;
     cursor: pointer;
   }
 
@@ -23,7 +22,7 @@ const StyledCheckbox = styled.div`
     left: 0;
     height: 20px;
     width: 20px;
-    border: 2px solid black;
+    border: 1.5px solid black;
     border-radius: 4px;
   }
 
@@ -36,8 +35,7 @@ const StyledCheckbox = styled.div`
     width: 10px;
     height: 5px;
     border: solid black;
-    border-width: 0 0 3px 3px;
-
+    border-width: 0 0 2px 2px;
   }
 `
 export const Checkbox = (props: {id: number,cur: number, setValue: (id: number) => void}) => {

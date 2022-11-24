@@ -7,8 +7,8 @@ const slice = createSlice({
     name: "test",
     initialState: {type: null} as SliceType,
     reducers: {
-        setTestType(state, action) {
-            state.type = action.payload.type
+        setTestType(state, action: PayloadAction<{value: any}>) {
+            state.type = action.payload.value
         }
     }
 })

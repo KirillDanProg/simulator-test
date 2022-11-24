@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Logo from "./Logo";
 
 const StyledHeader = styled.div`
-  position: absolute;
   display: flex;
   align-items: center;
   top: 0;
