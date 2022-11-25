@@ -19,7 +19,7 @@ const StyledFlex = styled.div<FlexPropsType>`
   justify-content: ${props => props.justify || "center"};
   align-items: ${props => props.align || "center"};
   text-align: center;
-  gap: ${props => props.gap || "20px"};
+  gap: 20px;
 
   .img {
     width: 70%;
