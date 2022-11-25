@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const StyledStartPage = styled.div`
   height: 100vh;
-  
-  h1 {
-    text-align: center;
+
+  h1, h2 {
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 25px;
-    margin-top: 30px;
+    text-align: center;
+    margin-top: 50px;
   }
 
   .img {

@@ -1,13 +1,10 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import {QuestionStatusType, QuestionType} from "../../features/test-simulator/questions-reducer";
-import {Questions} from "../../features/test-simulator/Questions";
+import {QuestionStatusType} from "../../features/test-simulator/questions-reducer";
 import {useAppSelector} from "../../app/hooks";
 
 
 type StepDotPropsType = {
-    // todo fix type
-    id: any
     status: QuestionStatusType
 }
 
@@ -16,7 +13,6 @@ const StyledDot = styled.div<StepDotPropsType>`
   height: 10px;
   border-radius: 50%;
   background-color: #C4C4C466;
-
 
   ${props => props.status === "right" && `
     background-color: #3BB98A;
@@ -34,8 +30,6 @@ const StyledDot = styled.div<StepDotPropsType>`
 `
 
 
-const qs: QuestionType[] = Questions
-
 const StepDot: FC<StepDotPropsType> = (props) => {
     return (
         <StyledDot {...props}/>
@@ -50,20 +44,23 @@ const StyledStepper = styled.div`
 type StepperPropsType = {
     questionId: number
 }
-export const Stepper: FC<StepperPropsType> = (props) => {
+export const Stepper: FC<StepperPropsType> = ({questionId}) => {
 
 
     const questions = useAppSelector(state => state.questions.questions)
 
     return (
         <StyledStepper>
+            {/* 2 вопрос из 14 */}
+            {`${questionId} из ${questions.length}`}
 
-            {`${props.questionId} из ${qs.length}`}
-
-            {questions.map((dot: any) => <StepDot key={dot.id}
-                                           id={dot.id}
-                                           status={props.questionId === dot.id && "current" || dot.status}
-            />)}
+            {
+                questions.map((dot) => <StepDot key={dot.id}
+                                                status={
+                                                    questionId === dot.id
+                                                        ? "current"
+                                                        : dot.status}/>)
+            }
 
         </StyledStepper>
     )
