@@ -1,35 +1,96 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BackToTestChoice} from "./BackToTestChoice";
-import {AnswerVariant} from "./PossibleAnswer";
+import {AnswerVariant} from "./AnswerVariant";
 import {Container} from "../../common-components/Container";
 import {Button} from "../../common-components/Button";
-import { Stepper} from "./ProgressBar";
+import {Stepper} from "./ProgressBar";
+import {StyledQuestionContainer} from "./StyledTestSimulator";
+import {Flex} from "../../common-components/Flex";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {Questions} from "../../features/test-simulator/Questions";
+import {changeQuestionStatus, fetchQuestions, QuestionType} from "../../features/test-simulator/questions-reducer";
+import Title from "../../common-components/Title";
+import {useNavigate} from "react-router-dom";
 
 const QuestionContainer = () => {
-    const [cur, setCur] = useState(0)
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+    const [currentCheckbox, setCurrentCheckbox] = useState<number | null>(null)
+    const [questionId, setQuestionId] = useState(0)
+    const [ansId, setAnsId] = useState<number | null>(null)
+
+    const currentQuestion: QuestionType = Questions[questionId]
+    // todo change condition
+    if(currentQuestion === undefined) {
+        navigate("/result")
+    }
+    const answersKeys = Object.keys(currentQuestion.possibleAnswers)
+
+    const goToNextQuestion = (skip: string) => {
+
+        setQuestionId((state) => state + 1)
+        setCurrentCheckbox(null)
+
+        if (skip) {
+            dispatch(changeQuestionStatus(currentQuestion.id, "idle"))
+            return
+        }
+        if (`${ansId}` === currentQuestion.rightAnswer) {
+            dispatch(changeQuestionStatus(currentQuestion.id, "right"))
+        } else if (`${ansId}` !== currentQuestion.rightAnswer) {
+            dispatch(changeQuestionStatus(currentQuestion.id, "wrong"))
+        }
+
+    }
+
+    const testType = useAppSelector(state => state.app.testType)
+
+    useEffect(() => {
+        dispatch(fetchQuestions(Questions))
+    }, [])
 
     return (
         <Container width={"756px"}>
-            <div>
+            <StyledQuestionContainer>
 
                 <BackToTestChoice/>
 
+                <Title type={testType}/>
+
+                <Stepper questionId={currentQuestion.id}/>
+
+
                 <div>
-                    Как можно добавить элемент в начало массива?
+                    {currentQuestion.body}
                 </div>
 
-                <AnswerVariant id={1} cur={cur} setCur={setCur}/>
-                <AnswerVariant id={2} cur={cur} setCur={setCur}/>
-                <AnswerVariant id={3} cur={cur} setCur={setCur}/>
-                <AnswerVariant id={4} cur={cur} setCur={setCur}/>
+                <div>
+                    {answersKeys.map((el: string) => {
+                        return (
+                            <AnswerVariant key={el}
+                                           id={+el}
+                                           setCurrentCheckbox={setCurrentCheckbox}
+                                           currentCheckbox={currentCheckbox}
+                                           ans={currentQuestion.possibleAnswers}
+                                           selectAnswer={setAnsId}
+                            />
 
-                <Stepper/>
+                        )
+                    })}
+                </div>
 
-                <Button padding={"6px 18px"}
-                    variant={"outlined"}>Пропустить вопрос</Button>
-                <Button padding={"6px 18px"}
-                    variant={"contained"}>Ответить</Button>
-            </div>
+
+                <Flex justify={"space-between"}>
+                    <Button callback={() => goToNextQuestion("skip")}
+                            padding={"6px 18px"}
+                            variant={"outlined"}>Пропустить вопрос</Button>
+                    <Button callback={() => goToNextQuestion("")}
+                            padding={"6px 18px"}
+                            variant={"contained"}>Ответить</Button>
+                </Flex>
+
+            </StyledQuestionContainer>
         </Container>
 
     );
