@@ -6,6 +6,7 @@ import {store} from "./app/store";
 import {Route, Routes} from "react-router-dom";
 import QuestionContainer from "./components/question-page/QuestionContainer";
 import Header from "./components/Header";
+import ResultPage from "./components/result-page/ResultPage";
 
 const StyledApp = styled.div`
   min-height: 100vh;
@@ -22,6 +23,7 @@ function App() {
                     // todo fix routing
                     <Route path={"/"} element={<StartPage/>}/>
                     <Route path={"test"} element={<QuestionContainer/>}/>
+                    <Route path={"result"} element={<ResultPage/>}/>
                 </Routes>
             </StyledApp>
 
