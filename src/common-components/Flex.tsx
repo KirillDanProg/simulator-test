@@ -23,7 +23,6 @@ const StyledFlex = styled.div<FlexPropsType>`
 
   .img {
     width: 70%;
-    margin: 20px;
   }
 
   ${props => props.position === "center" && `
