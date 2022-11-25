@@ -1,4 +1,4 @@
-import {StatusType} from "./questions-slice";
+import {QuestionStatusType} from "./questions-reducer";
 
 export const Questions = [
     {
@@ -11,7 +11,7 @@ export const Questions = [
             4: "Использовать Array.prototype.unshift()",
         },
         rightAnswer: "4",
-        status: "idle" as StatusType
+        status: "idle" as QuestionStatusType
     },
     {
         id: 2,
@@ -23,7 +23,7 @@ export const Questions = [
             4: "Использовать Array.prototype.unshift()",
         },
         rightAnswer: "3",
-        status: "idle"  as StatusType
+        status: "idle"  as QuestionStatusType
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ export const Questions = [
             4: "Использовать Array.prototype.unshift()",
         },
         rightAnswer: "1",
-        status: "idle"  as StatusType
+        status: "idle"  as QuestionStatusType
     },
     {
         id: 4,
@@ -47,9 +47,8 @@ export const Questions = [
             4: "Использовать Array.prototype.unshift()",
         },
         rightAnswer: "2",
-        status: "idle"  as StatusType
+        status: "idle"  as QuestionStatusType
     },
-
 ]
 
 export {}

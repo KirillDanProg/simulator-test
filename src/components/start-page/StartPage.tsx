@@ -4,16 +4,16 @@ import back from "../../assets/back.png"
 import {Link} from "react-router-dom";
 import {StyledStartPage} from "./StyledStartPage";
 import {useAppDispatch} from "../../app/hooks";
-import {setTestType} from "../../features/test-simulator/simulator-slice";
 import {Flex} from "../../common-components/Flex";
+import {setTestType, TestType} from "../../features/test-simulator/app-reducer";
 
 
 export const StartPage = () => {
 
     const dispatch = useAppDispatch()
 
-    const onClickHandler = (type: "front" | "back") => {
-        dispatch(setTestType({value: type}))
+    const onClickHandler = (type: TestType) => {
+        dispatch(setTestType(type))
     }
 
     return (

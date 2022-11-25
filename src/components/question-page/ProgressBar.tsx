@@ -1,6 +1,7 @@
 import React, {FC, useState} from 'react';
 import styled from "styled-components";
-import {StatusType} from "../../features/test-simulator/questions-slice";
+import {QuestionStatusType, QuestionType} from "../../features/test-simulator/questions-reducer";
+import {Questions} from "../../features/test-simulator/Questions";
 import {useAppSelector} from "../../app/hooks";
 
 
@@ -8,22 +9,25 @@ type StepDotPropsType = {
     setCur: (cur: number) => void
     // todo fix type
     id: any
-    status: StatusType
+    status: QuestionStatusType
 }
 
 const StyledDot = styled.div<StepDotPropsType>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: lightgray;
-  
+  background-color: #C4C4C466;
+
+
   ${props => props.status === "right" && `
-    background-color: green;
+    background-color: #3BB98A;
+;
   `}
   ${props => props.status === "wrong" && `
-    background-color: red;
+    background-color: #CF6256;
+
   `}
-  ${props => props.status === "idle" && `
+  ${props => props.status === "current" && `
   
     background-color: white;
     border: 1px solid blue;
@@ -31,11 +35,11 @@ const StyledDot = styled.div<StepDotPropsType>`
 `
 
 
+const qs: QuestionType[] = Questions
+
 const StepDot: FC<StepDotPropsType> = (props) => {
     return (
-        <StyledDot onClick={() => props.setCur(props.id)}
-                   {...props}
-        />
+        <StyledDot {...props}/>
     )
 }
 
@@ -44,19 +48,25 @@ const StyledStepper = styled.div`
   gap: 10px;
   align-items: center;
 `
-export const Stepper = () => {
+type StepperPropsType = {
+    questionIndex: number
+}
+export const Stepper: FC<StepperPropsType> = (props) => {
+
     const [cur, setCur] = useState(1)
+
     const questions = useAppSelector(state => state.questions.questions)
 
     return (
         <StyledStepper>
 
-            {`${cur} из ${questions.length}`}
+            {`${cur} из ${qs.length}`}
 
-            {questions.map(dot => <StepDot key={dot.id}
-                                    id={dot.id}
-                                    setCur={setCur}
-                                    status={dot.status}/>)}
+            {questions.map((dot: any) => <StepDot key={dot.id}
+                                           id={dot.id}
+                                           setCur={setCur}
+                                           status={props.questionIndex === dot.id && "current" || dot.status}
+            />)}
 
         </StyledStepper>
     )
