@@ -15,15 +15,14 @@ const StyledPossibleAnswer = styled.div`
 type AnswerPropsType = {
     id: number
     currentCheckbox: number | null
-    setCurrentCheckbox: (cur: number) => void
+    setCurrentCheckbox: (cur: number | null) => void
     ans: {[key: string] : string }
-    questionIndex: number
-    selectAnswer: (answerId: number) => void
+    selectAnswer: (answerId: number | null) => void
 }
 
 export const AnswerVariant: FC<AnswerPropsType> = (props) => {
 
-    const selectAnswerHandler = (answerId: number) => {
+    const selectAnswerHandler = (answerId: number | null) => {
         props.selectAnswer(answerId)
         props.setCurrentCheckbox(answerId)
     }

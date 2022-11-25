@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import styled from "styled-components";
 import {QuestionStatusType, QuestionType} from "../../features/test-simulator/questions-reducer";
 import {Questions} from "../../features/test-simulator/Questions";
@@ -6,7 +6,6 @@ import {useAppSelector} from "../../app/hooks";
 
 
 type StepDotPropsType = {
-    setCur: (cur: number) => void
     // todo fix type
     id: any
     status: QuestionStatusType
@@ -49,23 +48,21 @@ const StyledStepper = styled.div`
   align-items: center;
 `
 type StepperPropsType = {
-    questionIndex: number
+    questionId: number
 }
 export const Stepper: FC<StepperPropsType> = (props) => {
 
-    const [cur, setCur] = useState(1)
 
     const questions = useAppSelector(state => state.questions.questions)
 
     return (
         <StyledStepper>
 
-            {`${cur} из ${qs.length}`}
+            {`${props.questionId} из ${qs.length}`}
 
             {questions.map((dot: any) => <StepDot key={dot.id}
                                            id={dot.id}
-                                           setCur={setCur}
-                                           status={props.questionIndex === dot.id && "current" || dot.status}
+                                           status={props.questionId === dot.id && "current" || dot.status}
             />)}
 
         </StyledStepper>
