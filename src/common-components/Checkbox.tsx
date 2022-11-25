@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styled from "styled-components";
 
 
@@ -38,18 +38,17 @@ const StyledCheckbox = styled.div`
     border-width: 0 0 2px 2px;
   }
 `
-export const Checkbox = (props: {id: number,cur: number, setValue: (id: number) => void}) => {
-
-    const onChangeHandler = () => {
-        props.setValue(props.id)
-    }
+type CheckboxPropsType = {
+    id: number
+    cur: number | null
+}
+export const Checkbox: FC<CheckboxPropsType> = (props) => {
 
     return (
         <StyledCheckbox>
             <label className={"container"}>
-                <input onChange={onChangeHandler}
-                    type={"checkbox"}
-                    checked={props.cur === props.id}/>
+                <input type={"checkbox"}
+                       checked={props.cur === props.id}/>
 
                 <span className={"checkmark"}></span>
             </label>
