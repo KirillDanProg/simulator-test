@@ -27,6 +27,7 @@ export const StyledButton = styled.button<ButtonPropsType>`
 `
 
 type ButtonPropsType = {
+    callback: () => void
     color?: string
     variant?: string
     padding?: string
@@ -37,7 +38,10 @@ type ButtonPropsType = {
 }
 
 export const Button: FC<ButtonPropsType> = (props) => {
+    const onClickHandler = () => {
+        props.callback()
+    }
     return (
-        <StyledButton {...props}/>
+        <StyledButton onClick={onClickHandler} {...props} />
     )
 }
