@@ -48,7 +48,9 @@ export const Checkbox: FC<CheckboxPropsType> = (props) => {
         <StyledCheckbox>
             <label className={"container"}>
                 <input type={"checkbox"}
-                       checked={props.cur === props.id}/>
+                       checked={props.cur === props.id}
+                       readOnly={true}
+                />
 
                 <span className={"checkmark"}></span>
             </label>
