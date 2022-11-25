@@ -52,7 +52,7 @@ const ResultPage = () => {
 
             <Container width={"756px"}>
 
-                <Flex justify={"center"} className={"result-container"}>
+                <Flex direction={"column"} justify={"center"} className={"result-container"}>
 
                     <ProgressScale value={result}/>
 

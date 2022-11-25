@@ -1,14 +1,16 @@
 import styled from "styled-components";
+import {device} from "../../app/media-query";
 
 export const StyledStartPage = styled.div`
-  height: 100vh;
+  height: calc(100vh - 120px);
+  
 
   h1, h2 {
     font-size: 22px;
     font-weight: 500;
     line-height: 25px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   .img {
@@ -27,6 +29,11 @@ export const StyledStartPage = styled.div`
 
     &:active {
       opacity: 1;
+    }
+  }
+  @media ${device.tablet} {
+    h1, h2 {
+      margin-top: 50px;
     }
   }
 `

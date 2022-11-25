@@ -2,21 +2,29 @@ import React, {FC} from 'react';
 import styled from "styled-components";
 import {Checkbox} from "../../common-components/Checkbox";
 import {Flex} from "../../common-components/Flex";
+import {device} from "../../app/media-query";
 
 
 const StyledPossibleAnswer = styled.div`
-  margin-bottom: 20px;
+  
+  margin-bottom: 10px;
+  padding: 10px;
   background-color: #fff;
-  padding: 12px 50px;
   border-radius: 5px;
   box-shadow: 0 0 3px lightgray;
   cursor: pointer;
+
+  @media ${device.tablet} {
+    margin-bottom: 20px;
+    padding: 12px 50px;
+  }
+
 `
 type AnswerPropsType = {
     id: number
     currentCheckbox: number | null
     setCurrentCheckbox: (cur: number | null) => void
-    ans: {[key: string] : string }
+    ans: { [key: string]: string }
     selectAnswer: (answerId: number | null) => void
 }
 

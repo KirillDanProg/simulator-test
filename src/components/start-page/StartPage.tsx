@@ -20,8 +20,8 @@ export const StartPage = () => {
         <StyledStartPage>
 
             <h1>Выбери направление</h1>
-            <Flex padding={"100px 0"}
-                gap={"100px"}
+            <Flex direction={"column"} padding={"100px 0"}
+                gap={"60px"}
             >
                 <Link to={"test"} onClick={() => onClickHandler("front")}>
                     <img className={"img"}

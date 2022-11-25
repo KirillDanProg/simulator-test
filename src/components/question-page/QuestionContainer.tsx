@@ -22,7 +22,7 @@ const QuestionContainer = () => {
 
     const currentQuestion: QuestionType = Questions[questionId]
     // todo change condition
-    if(currentQuestion === undefined) {
+    if (currentQuestion === undefined) {
         navigate("/result")
     }
     const answersKeys = Object.keys(currentQuestion.possibleAnswers)
@@ -56,9 +56,9 @@ const QuestionContainer = () => {
 
                 <BackToTestChoice/>
 
-                <Title type={testType}/>
+                    <Title type={testType}/>
 
-                <Stepper questionId={currentQuestion.id}/>
+                    <Stepper questionId={currentQuestion.id}/>
 
 
                 <div>
@@ -81,7 +81,7 @@ const QuestionContainer = () => {
                 </div>
 
 
-                <Flex justify={"space-between"}>
+                <Flex direction={"row"} justify={"space-between"} gap={"5px"}>
                     <Button callback={() => goToNextQuestion("skip")}
                             padding={"6px 18px"}
                             variant={"outlined"}>Пропустить вопрос</Button>
