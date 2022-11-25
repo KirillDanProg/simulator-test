@@ -9,6 +9,7 @@ type FlexPropsType = {
     direction?: string
     children?: JSX.Element[] | JSX.Element
     padding?: string
+    className?: string
 }
 
 const StyledFlex = styled.div<FlexPropsType>`
