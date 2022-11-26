@@ -6,6 +6,7 @@ export type QuestionType = {
     status: QuestionStatusType
 }
 export type QuestionStatusType = "right" | "wrong" | "current" | "idle"
+
 type InitialStateType = typeof initialStateType
 type PossibleAnswersType = { [key: string]: string }
 
@@ -13,25 +14,28 @@ const initialStateType = {
     questions: [] as QuestionType[],
 }
 
+const CHANGE_QUESTION_STATUS = "CHANGE-QUESTION-STATUS/QUESTION-REDUCER"
+const FETCH_QUESTIONS = "FETCH-QUESTIONS/QUESTION-REDUCER"
+
 export const questionsReducer = (state: InitialStateType = initialStateType, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case "CHANGE-QUESTION-STATUS/QUESTION-REDUCER":
+        case CHANGE_QUESTION_STATUS:
             return {
                 ...state, questions: state.questions.map(question => question.id === action.payload.questionId
                     ? {...question, status: action.payload.status}
                     : question
                 )
             }
-        case "FETCH-QUESTIONS/QUESTION-REDUCER":
-            return {...state, questions: [...action.payload.questions] }
-
+        case FETCH_QUESTIONS:
+            return {...state, questions: [...action.payload.questions]}
         default:
             return state
     }
 }
+
 export const changeQuestionStatus = (questionId: number, status: QuestionStatusType) => {
     return {
-        type: "CHANGE-QUESTION-STATUS/QUESTION-REDUCER",
+        type: CHANGE_QUESTION_STATUS,
         payload: {
             questionId,
             status
@@ -41,7 +45,7 @@ export const changeQuestionStatus = (questionId: number, status: QuestionStatusT
 
 export const fetchQuestions = (questions: QuestionType[]) => {
     return {
-        type: "FETCH-QUESTIONS/QUESTION-REDUCER",
+        type: FETCH_QUESTIONS,
         payload: {
             questions
         }
