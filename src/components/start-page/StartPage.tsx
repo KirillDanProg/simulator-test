@@ -21,17 +21,23 @@ export const StartPage = () => {
 
             <h1>Выбери направление</h1>
             <Flex direction={"column"} padding={"100px 0"}
-                gap={"60px"}
+                  gap={"60px"}
             >
-                <Link to={"test"} onClick={() => onClickHandler("front")}>
-                    <img className={"img"}
-                         src={front}/>
-                </Link>
+                <div className={"imgContainer"} onClick={() => onClickHandler("front")}>
+                    <Link to={"test"}>
+                        <img className={"img"}
+                             src={front}/>
 
-                <Link to={"test"} onClick={() => onClickHandler("back")}>
-                    <img className={"img"}
-                         src={back}/>
-                </Link>
+                    </Link>
+                </div>
+
+                <div className={"imgContainer"} onClick={() => onClickHandler("back")}>
+                    <Link to={"test"}>
+                        <img className={"img"}
+                             src={back}/>
+                    </Link>
+                </div>
+
             </Flex>
 
 
