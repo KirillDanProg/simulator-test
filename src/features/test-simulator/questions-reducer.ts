@@ -1,9 +1,12 @@
+import {Nullable} from "../../app/types";
+
 export type QuestionType = {
     id: number
     body: string
     possibleAnswers: PossibleAnswersType
     rightAnswer: string
     status: QuestionStatusType
+    chosen?: Nullable<number>
 }
 export type QuestionStatusType = "right" | "wrong" | "current" | "idle"
 
@@ -16,6 +19,7 @@ const initialStateType = {
 
 const CHANGE_QUESTION_STATUS = "CHANGE-QUESTION-STATUS/QUESTION-REDUCER"
 const FETCH_QUESTIONS = "FETCH-QUESTIONS/QUESTION-REDUCER"
+const SAVE_CHOSEN_ANSWER = "SAVE-CHOSEN-ANSWER"
 
 export const questionsReducer = (state: InitialStateType = initialStateType, action: ActionsType): InitialStateType => {
     switch (action.type) {
@@ -27,7 +31,13 @@ export const questionsReducer = (state: InitialStateType = initialStateType, act
                 )
             }
         case FETCH_QUESTIONS:
-            return {...state, questions: [...action.payload.questions]}
+            return {...state, questions: [...action.payload.questions,]}
+        case SAVE_CHOSEN_ANSWER:
+            return {
+                ...state, questions: state.questions.map(el => el.id === action.payload.questionId
+                    ? {...el, chosen: action.payload.answerId}
+                    : el)
+            }
         default:
             return state
     }
@@ -52,5 +62,16 @@ export const fetchQuestions = (questions: QuestionType[]) => {
     } as const
 }
 
+export const saveChosenAnswer = (questionId: number, answerId: Nullable<number>) => {
+    return {
+        type: SAVE_CHOSEN_ANSWER,
+        payload: {
+            questionId,
+            answerId
+        }
+    } as const
+
+}
 type ActionsType = ReturnType<typeof changeQuestionStatus>
     | ReturnType<typeof fetchQuestions>
+    | ReturnType<typeof saveChosenAnswer>
