@@ -50,5 +50,3 @@ export const Questions = [
         status: "idle"  as QuestionStatusType
     },
 ]
-
-export {}
