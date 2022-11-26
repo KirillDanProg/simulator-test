@@ -12,7 +12,10 @@ export const StyledStartPage = styled.div`
     text-align: center;
     margin-top: 30px;
   }
-
+  .imgContainer {
+    width: 400px;
+    height: 400px;
+  }
   .img {
     max-width: 400px;
     border-radius: 15px;
