@@ -12,7 +12,7 @@ import {changeQuestionStatus, fetchQuestions, QuestionType} from "../../features
 import Title from "../../common-components/Title";
 import {useNavigate} from "react-router-dom";
 
-const QuestionContainer = () => {
+export const QuestionContainer = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
@@ -97,4 +97,3 @@ const QuestionContainer = () => {
 };
 
 
-export default QuestionContainer;

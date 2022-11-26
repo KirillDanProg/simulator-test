@@ -9,6 +9,8 @@ import styled from "styled-components";
 
 const StyledResultPage = styled.div`
   .title {
+    width: 90%;
+    margin: 0 auto;
     font-size: 22px;
     font-weight: 500;
     line-height: 25px;
@@ -16,6 +18,7 @@ const StyledResultPage = styled.div`
     &.positioned {
       position: relative;
       top: 30px;
+      z-index: 2;
     }
   }
 
@@ -39,7 +42,7 @@ const StyledResultPage = styled.div`
     align-items: start;
   }
 `
-const ResultPage = () => {
+export const ResultPage = () => {
     const testType = useAppSelector(state => state.app.testType)
     const questions = useAppSelector(state => state.questions.questions)
     const rightQuestions = questions.filter(el => el.status === "right").length
@@ -69,8 +72,5 @@ const ResultPage = () => {
                 </Flex>
             </Container>
         </StyledResultPage>
-
     );
 };
-
-export default ResultPage;
