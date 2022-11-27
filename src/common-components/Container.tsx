@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, ReactElement} from 'react';
 import styled from "styled-components";
 import {device} from "../app/media-query";
 
 type ContainerPropsType = {
     width: string
-    children: JSX.Element
+    children: ReactElement | ReactElement[]
 }
 export const StyledContainer = styled.div<ContainerPropsType>`
   position: relative;

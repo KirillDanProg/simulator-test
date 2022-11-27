@@ -3,7 +3,6 @@ import {device} from "../../app/media-query";
 
 export const StyledStartPage = styled.div`
   height: calc(100vh - 120px);
-  
 
   h1, h2 {
     font-size: 22px;
@@ -13,8 +12,12 @@ export const StyledStartPage = styled.div`
     margin-top: 30px;
   }
 
+  .imgContainer {
+    height: 270px;
+  }
+
   .img {
-    max-width: 400px;
+    width: 100%;
     border-radius: 15px;
     cursor: pointer;
     box-shadow: 2px 2px 5px lightgray;
@@ -31,9 +34,15 @@ export const StyledStartPage = styled.div`
       opacity: 1;
     }
   }
+
   @media ${device.tablet} {
     h1, h2 {
       margin-top: 50px;
+    }
+
+    .imgContainer {
+      width: 400px;
+      height: 400px;
     }
   }
 `

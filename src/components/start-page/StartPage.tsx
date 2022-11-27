@@ -4,8 +4,8 @@ import back from "../../assets/back.png"
 import {Link} from "react-router-dom";
 import {StyledStartPage} from "./StyledStartPage";
 import {useAppDispatch} from "../../app/hooks";
-import {Flex} from "../../common-components/Flex";
 import {setTestType, TestType} from "../../features/test-simulator/app-reducer";
+import {Flex} from "../../common-components";
 
 
 export const StartPage = () => {
@@ -21,17 +21,27 @@ export const StartPage = () => {
 
             <h1>Выбери направление</h1>
             <Flex direction={"column"} padding={"100px 0"}
-                gap={"60px"}
+                  gap={"60px"}
             >
-                <Link to={"test"} onClick={() => onClickHandler("front")}>
-                    <img className={"img"}
-                         src={front}/>
-                </Link>
+                <div className={"imgContainer"} onClick={() => onClickHandler("front")}>
+                    <Link to={"test"}>
+                        <img className={"img"}
+                             src={front}
+                             alt={"Front-end"}
+                        />
 
-                <Link to={"test"} onClick={() => onClickHandler("back")}>
-                    <img className={"img"}
-                         src={back}/>
-                </Link>
+                    </Link>
+                </div>
+
+                <div className={"imgContainer"} onClick={() => onClickHandler("back")}>
+                    <Link to={"test"}>
+                        <img className={"img"}
+                             src={back}
+                             alt={"Back-end"}
+                        />
+                    </Link>
+                </div>
+
             </Flex>
 
 

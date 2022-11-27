@@ -21,9 +21,7 @@ const StyledFlex = styled.div<FlexPropsType>`
   text-align: center;
   gap: 5px;
 
-  .img {
-    width: 70%;
-  }
+  
 
   ${props => props.position === "center" && `
     position: absolute;

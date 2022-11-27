@@ -1,10 +1,9 @@
 import React from 'react';
-import {Container} from "../../common-components/Container";
-import {Flex} from "../../common-components/Flex";
 import {useAppSelector} from "../../app/hooks";
-import Title from "../../common-components/Title";
 import {ProgressScale} from "./ProgressScale";
 import styled from "styled-components";
+import {WrongAnsTable} from "./WrongAnsTable";
+import {Container, Flex, Title} from "../../common-components";
 
 
 const StyledResultPage = styled.div`
@@ -15,6 +14,7 @@ const StyledResultPage = styled.div`
     font-weight: 500;
     line-height: 25px;
     text-align: center;
+
     &.positioned {
       position: relative;
       top: 30px;
@@ -34,7 +34,7 @@ const StyledResultPage = styled.div`
     border-radius: 5px;
     box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03), 0 1px 2px rgba(29, 33, 38, 0.1);
   }
-  
+
   .result-title {
     display: flex;
     flex-direction: column;
@@ -62,14 +62,13 @@ export const ResultPage = () => {
                     <div className={"result-title"}>
                         <Title className={"title"} value={"Ваш результат теста"}/>
                         <div className={"result"}>
-
                             {
                                 `Вы ответили на ${rightQuestions > 0 ? rightQuestions : "0"} из ${questions.length}`
                             }
                         </div>
                     </div>
-
                 </Flex>
+                    <WrongAnsTable/>
             </Container>
         </StyledResultPage>
     );
