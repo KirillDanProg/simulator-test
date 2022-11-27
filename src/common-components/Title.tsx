@@ -10,7 +10,7 @@ type TitlePropsType = {
 const StyledTitle = styled.div`
 
 `
-const Title: FC<TitlePropsType> = (props) => {
+export const Title: FC<TitlePropsType> = (props) => {
 
     return (
         <StyledTitle {...props}>
@@ -26,5 +26,3 @@ const Title: FC<TitlePropsType> = (props) => {
         </StyledTitle>
     );
 };
-
-export default Title;
