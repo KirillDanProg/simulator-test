@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {BackToTestChoice} from "./BackToTestChoice";
 import {AnswerVariant} from "./AnswerVariant";
-import {Stepper} from "./ProgressBar";
-import {StyledQuestionContainer} from "./StyledTestSimulator";
+import {ProgressBar} from "./progress-bar/ProgressBar";
+import {StyledQuestionContainer} from "./StyledQuestionContainer";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {Questions} from "../../features/test-simulator/Questions";
 import {
@@ -14,42 +14,44 @@ import {useNavigate} from "react-router-dom";
 import {Button, Container, Flex, Title} from "../../common-components";
 import {Nullable} from "../../app/types";
 import {Preloader} from "../../common-components/Preloader";
+import {Wrapper} from "../../common-components/Wrapper";
 
 export const QuestionContainer = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const [ansId, setAnsId] = useState<Nullable<number>>(null)
+    const [answerId, setAnswerId] = useState<Nullable<number>>(null)
     const [currentCheckbox, setCurrentCheckbox] = useState<Nullable<number>>(null)
     const [questionId, setQuestionId] = useState(0)
-    const testType = useAppSelector(state => state.app.testType)
+
+    const backFrontDirection = useAppSelector(state => state.app.testDirectionTitleValue)
+    const testDirectionTitle = backFrontDirection === "back" ? "Back-end" : "Front-end"
 
     const questions = useAppSelector(state => state.questions.questions)
+
     const currentQuestion = questions[questionId]
 
     const answersKeys = currentQuestion && Object.keys(currentQuestion.possibleAnswers)
 
     const goToNextQuestion = (skip: string) => {
-        // todo change condition
         setCurrentCheckbox(null)
 
-        setQuestionId((state) => {
-            if (state + 1 > questions.length - 1) {
-                navigate("/result")
-                return state
-            } else {
-                return state + 1
-            }
-        })
+        const nextQuestionId = questionId + 1
+        if (nextQuestionId < questions.length) {
+            setQuestionId(nextQuestionId)
+        } else {
+            navigate("/result")
+        }
+
         if (skip) {
             dispatch(changeQuestionStatus(currentQuestion.id, "idle"))
             return
         }
-        if (`${ansId}` === currentQuestion.rightAnswer) {
+        if (`${answerId}` === currentQuestion.rightAnswer) {
             dispatch(changeQuestionStatus(currentQuestion.id, "right"))
-        } else if (`${ansId}` !== currentQuestion.rightAnswer) {
+        } else if (`${answerId}` !== currentQuestion.rightAnswer) {
             dispatch(changeQuestionStatus(currentQuestion.id, "wrong"))
-            dispatch(saveChosenAnswer(currentQuestion.id, ansId))
+            dispatch(saveChosenAnswer(currentQuestion.id, answerId))
         }
 
     }
@@ -70,27 +72,26 @@ export const QuestionContainer = () => {
                     : <StyledQuestionContainer>
 
                         <BackToTestChoice/>
-                        <Title type={testType}/>
-                        <Stepper questionId={currentQuestion.id}/>
 
-                        <div>
-                            {currentQuestion.body}
-                        </div>
+                        <Title value={`Тест по направлению ${testDirectionTitle}`}/>
 
-                        <div>
+                        <ProgressBar questionId={questionId}/>
+
+                         {/*Текст вопроса*/}
+                        {currentQuestion.body}
+
+                        <Wrapper>
                             {
                                 answersKeys.map((el: string) => {
-                                    return (
-                                        <AnswerVariant key={el}
-                                                       id={+el}
-                                                       setCurrentCheckbox={setCurrentCheckbox}
-                                                       currentCheckbox={currentCheckbox}
-                                                       ans={currentQuestion.possibleAnswers}
-                                                       selectAnswer={setAnsId}
-                                        />
-                                    )
+                                    return <AnswerVariant key={el}
+                                                          answerId={+el}
+                                                          setCurrentCheckbox={setCurrentCheckbox}
+                                                          currentCheckbox={currentCheckbox}
+                                                          answers={currentQuestion.possibleAnswers}
+                                                          selectAnswer={setAnswerId}
+                                    />
                                 })}
-                        </div>
+                        </Wrapper>
 
                         <Flex direction={"row"} justify={"space-between"} gap={"5px"}>
                             <Button callback={() => goToNextQuestion("skip")}

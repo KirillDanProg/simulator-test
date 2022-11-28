@@ -16,8 +16,7 @@ export const App = () => {
             <StyledApp>
                 <Header/>
                 <Routes>
-                    // todo fix routing
-                    <Route path={"/"} element={<StartPage/>}/>
+                    <Route path={"/"}  element={<StartPage/>}/>
                     <Route path={"test"} element={<QuestionContainer/>}/>
                     <Route path={"result"} element={<ResultPage/>}/>
                 </Routes>

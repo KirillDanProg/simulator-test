@@ -4,14 +4,6 @@ import {device} from "../../app/media-query";
 export const StyledStartPage = styled.div`
   height: calc(100vh - 120px);
 
-  h1, h2 {
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 25px;
-    text-align: center;
-    margin-top: 30px;
-  }
-
   .imgContainer {
     height: 270px;
   }
@@ -36,7 +28,7 @@ export const StyledStartPage = styled.div`
   }
 
   @media ${device.tablet} {
-    h1, h2 {
+    .start-page-title {
       margin-top: 50px;
     }
 
