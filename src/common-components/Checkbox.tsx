@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
+import {Nullable} from "../app/types";
 
 
 const StyledCheckbox = styled.div`
@@ -40,7 +41,7 @@ const StyledCheckbox = styled.div`
 `
 type CheckboxPropsType = {
     id: number
-    cur: number | null
+    currentCheckbox: Nullable<number>
 }
 export const Checkbox: FC<CheckboxPropsType> = (props) => {
 
@@ -48,7 +49,7 @@ export const Checkbox: FC<CheckboxPropsType> = (props) => {
         <StyledCheckbox>
             <label className={"container"}>
                 <input type={"checkbox"}
-                       checked={props.cur === props.id}
+                       checked={props.currentCheckbox === props.id}
                        readOnly={true}
                 />
 
