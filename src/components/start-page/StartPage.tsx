@@ -5,25 +5,27 @@ import {Link} from "react-router-dom";
 import {StyledStartPage} from "./StyledStartPage";
 import {useAppDispatch} from "../../app/hooks";
 import {setTestType, TestType} from "../../features/test-simulator/app-reducer";
-import {Flex} from "../../common-components";
+import {Flex, Title} from "../../common-components";
+import {Wrapper} from "../../common-components/Wrapper";
 
 
 export const StartPage = () => {
 
     const dispatch = useAppDispatch()
 
-    const onClickHandler = (type: TestType) => {
-        dispatch(setTestType(type))
-    }
+    const onClickHandler = (type: TestType) => dispatch(setTestType(type))
+
 
     return (
         <StyledStartPage>
-
-            <h1>Выбери направление</h1>
+            <Title value="Выбери направление"
+                   className="start-page-title"
+            />
             <Flex direction={"column"} padding={"100px 0"}
                   gap={"60px"}
             >
-                <div className={"imgContainer"} onClick={() => onClickHandler("front")}>
+                <Wrapper className={"imgContainer"}
+                         callback={() => onClickHandler("front")}>
                     <Link to={"test"}>
                         <img className={"img"}
                              src={front}
@@ -31,16 +33,17 @@ export const StartPage = () => {
                         />
 
                     </Link>
-                </div>
+                </Wrapper>
 
-                <div className={"imgContainer"} onClick={() => onClickHandler("back")}>
+                <Wrapper className={"imgContainer"}
+                         callback={() => onClickHandler("back")}>
                     <Link to={"test"}>
                         <img className={"img"}
                              src={back}
                              alt={"Back-end"}
                         />
                     </Link>
-                </div>
+                </Wrapper>
 
             </Flex>
 
