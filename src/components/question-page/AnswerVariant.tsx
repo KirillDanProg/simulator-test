@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
-import {Checkbox} from "../../common-components/Checkbox";
-import {Flex} from "../../common-components/Flex";
+import {Checkbox, Flex} from "../../common-components";
 import {device} from "../../app/media-query";
+import {Nullable} from "../../app/types";
+import {Wrapper} from "../../common-components/Wrapper";
 
 
 const StyledPossibleAnswer = styled.div`
@@ -21,31 +22,31 @@ const StyledPossibleAnswer = styled.div`
 
 `
 type AnswerPropsType = {
-    id: number
-    currentCheckbox: number | null
-    setCurrentCheckbox: (cur: number | null) => void
-    ans: { [key: string]: string }
-    selectAnswer: (answerId: number | null) => void
+    answerId: number
+    currentCheckbox: Nullable<number>
+    setCurrentCheckbox: (cur: Nullable<number>) => void
+    answers: { [key: string]: string }
+    selectAnswer: (answerId: Nullable<number>) => void
 }
 
 export const AnswerVariant: FC<AnswerPropsType> = (props) => {
 
-    const selectAnswerHandler = (answerId: number | null) => {
+    const selectAnswerHandler = (answerId: Nullable<number>) => {
         props.selectAnswer(answerId)
         props.setCurrentCheckbox(answerId)
     }
 
     return (
-        <div onClick={() => selectAnswerHandler(props.id)}>
+        <Wrapper callback={() => selectAnswerHandler(props.answerId)}>
             <StyledPossibleAnswer>
                 <Flex justify={"start"} align={"center"} gap={"15px"}>
-                    <Checkbox id={props.id}
-                              cur={props.currentCheckbox}
+                    <Checkbox id={props.answerId}
+                              currentCheckbox={props.currentCheckbox}
                     />
-                    <span>{props.ans[props.id]}</span>
+                    <Wrapper>{props.answers[props.answerId]}</Wrapper>
                 </Flex>
             </StyledPossibleAnswer>
-        </div>
+        </Wrapper>
 
 
     );
