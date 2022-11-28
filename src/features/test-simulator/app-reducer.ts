@@ -1,16 +1,21 @@
-export type TestType = "back" | "front"
-type InitialStateType = typeof initialState
+import {Nullable} from "../../app/types";
+import {AppAction} from "./ActionConstants";
 
-const initialState = {
-    testType: null as TestType | null
+export type TestType = "back" | "front"
+type InitialStateType = {
+    testDirectionTitleValue: Nullable<TestType>
 }
 
-const SET_TEST_TYPE = "APP-REDUCER/SET-TEST-TYPE"
+const initialState = {
+    testDirectionTitleValue: null
+}
+
+
 
 export const appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case SET_TEST_TYPE:
-            return {...state, testType: action.value}
+        case AppAction.SET_TEST_TYPE:
+            return {...state, testDirectionTitleValue: action.value}
         default:
             return state
     }
@@ -22,7 +27,7 @@ type ActionsType = ReturnType<typeof setTestType>
 
 export const setTestType = (value: TestType) => {
     return {
-        type: SET_TEST_TYPE,
+        type: AppAction.SET_TEST_TYPE,
         value
     } as const
 }

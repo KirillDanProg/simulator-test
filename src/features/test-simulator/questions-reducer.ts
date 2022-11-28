@@ -1,4 +1,5 @@
 import {Nullable} from "../../app/types";
+import {QuestionsAction} from "./ActionConstants";
 
 export type QuestionType = {
     id: number
@@ -6,36 +7,36 @@ export type QuestionType = {
     possibleAnswers: PossibleAnswersType
     rightAnswer: string
     status: QuestionStatusType
-    chosen?: Nullable<number>
+    chosenAnswer?: Nullable<number>
 }
 export type QuestionStatusType = "right" | "wrong" | "current" | "idle"
 
-type InitialStateType = typeof initialStateType
 type PossibleAnswersType = { [key: string]: string }
 
-const initialStateType = {
-    questions: [] as QuestionType[],
+type InitialStateType = {
+    questions: QuestionType[]
 }
-
-const CHANGE_QUESTION_STATUS = "CHANGE-QUESTION-STATUS/QUESTION-REDUCER"
-const FETCH_QUESTIONS = "FETCH-QUESTIONS/QUESTION-REDUCER"
-const SAVE_CHOSEN_ANSWER = "SAVE-CHOSEN-ANSWER"
+const initialStateType = {
+    questions: []
+}
 
 export const questionsReducer = (state: InitialStateType = initialStateType, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case CHANGE_QUESTION_STATUS:
+        case QuestionsAction.CHANGE_QUESTION_STATUS:
             return {
                 ...state, questions: state.questions.map(question => question.id === action.payload.questionId
                     ? {...question, status: action.payload.status}
                     : question
                 )
             }
-        case FETCH_QUESTIONS:
+
+        case QuestionsAction.FETCH_QUESTIONS:
             return {...state, questions: [...action.payload.questions,]}
-        case SAVE_CHOSEN_ANSWER:
+
+        case QuestionsAction.SAVE_CHOSEN_ANSWER:
             return {
                 ...state, questions: state.questions.map(el => el.id === action.payload.questionId
-                    ? {...el, chosen: action.payload.answerId}
+                    ? {...el, chosenAnswer: action.payload.answerId}
                     : el)
             }
         default:
@@ -45,7 +46,7 @@ export const questionsReducer = (state: InitialStateType = initialStateType, act
 
 export const changeQuestionStatus = (questionId: number, status: QuestionStatusType) => {
     return {
-        type: CHANGE_QUESTION_STATUS,
+        type: QuestionsAction.CHANGE_QUESTION_STATUS,
         payload: {
             questionId,
             status
@@ -55,7 +56,7 @@ export const changeQuestionStatus = (questionId: number, status: QuestionStatusT
 
 export const fetchQuestions = (questions: QuestionType[]) => {
     return {
-        type: FETCH_QUESTIONS,
+        type: QuestionsAction.FETCH_QUESTIONS,
         payload: {
             questions
         }
@@ -64,7 +65,7 @@ export const fetchQuestions = (questions: QuestionType[]) => {
 
 export const saveChosenAnswer = (questionId: number, answerId: Nullable<number>) => {
     return {
-        type: SAVE_CHOSEN_ANSWER,
+        type: QuestionsAction.SAVE_CHOSEN_ANSWER,
         payload: {
             questionId,
             answerId
