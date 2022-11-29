@@ -10,18 +10,20 @@ const StyledProgressBar = styled.div`
   align-items: center;
 `
 type StepperPropsType = {
-    questionId: number
+    id: number
 }
-export const ProgressBar: FC<StepperPropsType> = ({questionId}) => {
+export const ProgressBar: FC<StepperPropsType> = ({id}) => {
 
     const questions = useAppSelector(state => state.questions.questions)
 
+    // +1 because of index of questions array starts with zero
+    const questionId = id + 1
+
     return (
         <StyledProgressBar>
-            {/* 2 вопрос из 14
-            +1 because of arr index starts from zero */}
+            {/* 2 вопрос из 14 */}
             <Wrapper>
-                {`${questionId + 1} из ${questions.length}`}
+                {`${questionId} из ${questions.length}`}
             </Wrapper>
 
             {

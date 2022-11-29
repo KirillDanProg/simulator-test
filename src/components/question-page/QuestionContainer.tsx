@@ -75,7 +75,7 @@ export const QuestionContainer = () => {
 
                         <Title value={`Тест по направлению ${testDirectionTitle}`}/>
 
-                        <ProgressBar questionId={questionId}/>
+                        <ProgressBar id={questionId}/>
 
                          {/*Текст вопроса*/}
                         {currentQuestion.body}
