@@ -78,8 +78,8 @@ export const QuestionContainer = () => {
 
                         <ProgressBar id={questionId}/>
 
-                         {/*Текст вопроса*/}
-                        {currentQuestion.body}
+                            {/*Текст вопроса*/}
+                            {currentQuestion.body}
 
                         <Wrapper>
                             {
@@ -94,13 +94,17 @@ export const QuestionContainer = () => {
                                 })}
                         </Wrapper>
 
-                        <Flex direction={"row"} justify={"space-between"} gap={"5px"}>
+                        <Flex direction="row"
+                              justify="space-between"
+                              gap="5px">
                             <Button callback={() => goToNextQuestion("skip")}
-                                    padding={"6px 18px"}
-                                    variant={"outlined"}>Пропустить вопрос</Button>
+                                    padding="6px 18px"
+                                    variant="outlined">Пропустить вопрос
+                            </Button>
                             <Button callback={() => goToNextQuestion("")}
-                                    padding={"6px 18px"}
-                                    variant={"contained"}>Ответить</Button>
+                                    padding="6px 18px"
+                                    variant="contained">Ответить
+                            </Button>
                         </Flex>
                     </StyledQuestionContainer>
             }

@@ -15,6 +15,7 @@ const StyledProgressScale = styled.div<ProgressScalePropsType>`
     align-items: center;
     justify-content: center;
   }
+
   .circ-progress::before {
     content: "";
     position: absolute;
@@ -23,6 +24,7 @@ const StyledProgressScale = styled.div<ProgressScalePropsType>`
     border-radius: 50%;
     background-color: #fff;
   }
+
   .progress-value {
     position: relative;
     font-size: 40px;
@@ -36,8 +38,8 @@ type ProgressScalePropsType = {
 export const ProgressScale: FC<ProgressScalePropsType> = (props) => {
     return (
         <StyledProgressScale {...props}>
-            <div className={"circ-progress"}>
-                <div className={"progress-value"}>
+            <div className="circ-progress">
+                <div className="progress-value">
                     {`${props.value}%`}
                 </div>
             </div>
