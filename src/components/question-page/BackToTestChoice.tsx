@@ -12,14 +12,14 @@ export const BackToTestChoice = () => {
 
     return (
         <Wrapper callback={backToStartPage}>
-            <Flex direction={"row"}
-                  position={"top-left"}
-                  align={"center"}
-                  gap={"12px"}
-                  padding={"30px 0"}
+            <Flex direction="row"
+                  position="top-left"
+                  align="center"
+                  gap="12px"
+                  padding="30px 0"
             >
-                <ArrowBack size={"18px"}
-                           color={"black"}
+                <ArrowBack size="18px"
+                           color="black"
                 />
                 <span style={{cursor: "pointer"}}>Назад к выбору теста</span>
             </Flex>

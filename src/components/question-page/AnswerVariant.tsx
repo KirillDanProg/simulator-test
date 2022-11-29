@@ -39,7 +39,7 @@ export const AnswerVariant: FC<AnswerPropsType> = (props) => {
     return (
         <Wrapper callback={() => selectAnswerHandler(props.answerId)}>
             <StyledPossibleAnswer>
-                <Flex justify={"start"} align={"center"} gap={"15px"}>
+                <Flex justify="start" align="center" gap="15px">
                     <Checkbox id={props.answerId}
                               currentCheckbox={props.currentCheckbox}
                     />
