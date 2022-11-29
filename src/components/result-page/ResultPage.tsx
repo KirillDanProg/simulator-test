@@ -2,9 +2,10 @@ import React from 'react';
 import {useAppSelector} from "../../app/hooks";
 import {ProgressScale} from "./ProgressScale";
 import styled from "styled-components";
-import {WrongAnsTable} from "./WrongAnsTable";
+import {WrongAnsTable} from "./table/WrongAnsTable";
 import {Container, Flex, Title} from "../../common-components";
 import {titleGenerator} from "../../utils/titleGenerator";
+import {Wrapper} from "../../common-components/Wrapper";
 
 
 const StyledResultPage = styled.div`
@@ -64,14 +65,14 @@ export const ResultPage = () => {
 
                     <ProgressScale value={result}/>
 
-                    <div className="result-title">
+                    <Wrapper className="result-title">
                         <Title className="title" value="Ваш результат теста"/>
-                        <div className="result">
+                        <Wrapper className="result">
                             {
                                 `Вы ответили на ${rightQuestions > 0 ? rightQuestions : "0"} из ${questions.length}`
                             }
-                        </div>
-                    </div>
+                        </Wrapper>
+                    </Wrapper>
                 </Flex>
                 <WrongAnsTable/>
             </Container>
