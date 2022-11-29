@@ -16,12 +16,13 @@ export const App = () => {
             <StyledApp>
                 <Header/>
                 <Routes>
-                    <Route path={"/"}  element={<StartPage/>}/>
-                    <Route path={"test"} element={<QuestionContainer/>}/>
-                    <Route path={"result"} element={<ResultPage/>}/>
+                    <Route path={"/*"}>
+                        <Route index element={<StartPage/>}/>
+                        <Route path={"test"} element={<QuestionContainer/>}/>
+                        <Route path={"result"} element={<ResultPage/>}/>
+                    </Route>
                 </Routes>
             </StyledApp>
         </Provider>
     )
 }
-
