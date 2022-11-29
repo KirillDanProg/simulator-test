@@ -15,6 +15,7 @@ import {Button, Container, Flex, Title} from "../../common-components";
 import {Nullable} from "../../app/types";
 import {Preloader} from "../../common-components/Preloader";
 import {Wrapper} from "../../common-components/Wrapper";
+import {titleGenerator} from "../../utils/titleGenerator";
 
 export const QuestionContainer = () => {
     const dispatch = useAppDispatch()
@@ -25,7 +26,7 @@ export const QuestionContainer = () => {
     const [questionId, setQuestionId] = useState(0)
 
     const backFrontDirection = useAppSelector(state => state.app.testDirectionTitleValue)
-    const testDirectionTitle = backFrontDirection === "back" ? "Back-end" : "Front-end"
+    const testDirectionTitle = titleGenerator(backFrontDirection as string)
 
     const questions = useAppSelector(state => state.questions.questions)
 
