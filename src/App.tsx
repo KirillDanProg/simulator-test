@@ -3,7 +3,7 @@ import {Provider} from "react-redux";
 import {store} from "./app/store";
 import {Route, Routes} from "react-router-dom";
 
-import { QuestionContainer, ResultPage, StartPage} from "./components";
+import {QuestionContainer, ResultPage, StartPage} from "./components";
 import {Layout} from "./components/layout/Layout";
 
 export const App = () => {
@@ -19,4 +19,3 @@ export const App = () => {
         </Provider>
     )
 }
-

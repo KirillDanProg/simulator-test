@@ -4,6 +4,7 @@ import {ProgressScale} from "./ProgressScale";
 import styled from "styled-components";
 import {WrongAnsTable} from "./WrongAnsTable";
 import {Container, Flex, Title} from "../../common-components";
+import {titleGenerator} from "../../utils/titleGenerator";
 
 
 const StyledResultPage = styled.div`
@@ -43,32 +44,36 @@ const StyledResultPage = styled.div`
   }
 `
 export const ResultPage = () => {
-    const testType = useAppSelector(state => state.app.testType)
     const questions = useAppSelector(state => state.questions.questions)
     const rightQuestions = questions.filter(el => el.status === "right").length
     const result = 100 / questions.length * rightQuestions
 
+    const backFrontDirection = useAppSelector(state => state.app.testDirectionTitleValue)
+    const testDirectionTitle = titleGenerator(backFrontDirection as string)
+
+
     return (
         <StyledResultPage>
 
-            <Title className={"title positioned"} type={testType}/>
+            <Title value={`Тест по направлению ${testDirectionTitle}`}
+                   className="title positioned"/>
 
-            <Container width={"756px"}>
+            <Container width="756px">
 
-                <Flex direction={"column"} justify={"center"} className={"result-container"}>
+                <Flex direction="column" justify="center" className="result-container">
 
                     <ProgressScale value={result}/>
 
-                    <div className={"result-title"}>
-                        <Title className={"title"} value={"Ваш результат теста"}/>
-                        <div className={"result"}>
+                    <div className="result-title">
+                        <Title className="title" value="Ваш результат теста"/>
+                        <div className="result">
                             {
                                 `Вы ответили на ${rightQuestions > 0 ? rightQuestions : "0"} из ${questions.length}`
                             }
                         </div>
                     </div>
                 </Flex>
-                    <WrongAnsTable/>
+                <WrongAnsTable/>
             </Container>
         </StyledResultPage>
     );
