@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useAppSelector} from "../../app/hooks";
 import {ProgressScale} from "./ProgressScale";
 import styled from "styled-components";
@@ -46,15 +46,13 @@ const StyledResultPage = styled.div`
 `
 export const ResultPage = () => {
     const questions = useAppSelector(state => state.questions.questions)
-    const rightQuestions = questions.filter(el => el.status === "right").length
-    const result = Math.round(100 / questions.length * rightQuestions)
+    const rightQuestions = questions.filter(el => el.status === "right").length || 0
+    const result = Math.round(100 / questions.length * rightQuestions) || 0
 
     const backFrontDirection = useAppSelector(state => state.app.testDirectionTitleValue)
     const testDirectionTitle = titleGenerator(backFrontDirection as string)
 
-
     let resultContent;
-
     if (rightQuestions <= 2) {
         resultContent = 'К сожалению, ваши эзотерические  способности пока отсутствуют, но это еще не повод отчаиваться, это лишь говорит о том, что пока вы не готовы к  этой  деятельности.\n'
     } else if (rightQuestions <= 6) {
