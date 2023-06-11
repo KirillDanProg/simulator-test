@@ -40,7 +40,7 @@ export const StyledButton = styled.button<ButtonPropsType>`
 `
 
 type ButtonPropsType = {
-    className: string
+    className?: string
     callback: () => void
     color?: string
     variant?: string
