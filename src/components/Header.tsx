@@ -10,16 +10,21 @@ const StyledHeader = styled.div`
   top: 0;
   width: 100%;
   height: 60px;
-  background: #1D2126;
-  
-  @media ${device.tablet} {
-    justify-content: start;
+  background: #efeeee;
+
+  .logo {
+    text-align: center;
+    color: #016dba;
   }
+
+  //
+    // @media ${device.tablet} {
+  // }
 `
 export const Header = () => {
     return (
         <StyledHeader>
-           <Logo/>
+            <Logo/>
         </StyledHeader>
     );
 };

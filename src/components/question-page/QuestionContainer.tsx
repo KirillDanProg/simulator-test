@@ -3,8 +3,8 @@ import {BackToTestChoice} from "./BackToTestChoice";
 import {AnswerVariant} from "./AnswerVariant";
 import {ProgressBar} from "./progress-bar/ProgressBar";
 import {StyledQuestionContainer} from "./StyledQuestionContainer";
+import { data } from '../../data'
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {Questions} from "../../features/test-simulator/Questions";
 import {
     changeQuestionStatus,
     fetchQuestions,
@@ -21,21 +21,21 @@ export const QuestionContainer = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const [answerId, setAnswerId] = useState<Nullable<number>>(null)
+    const [answerId, setAnswerId] = useState(-1)
     const [currentCheckbox, setCurrentCheckbox] = useState<Nullable<number>>(null)
-    const [questionId, setQuestionId] = useState(0)
+    const [questionId, setQuestionId] = useState(1)
 
     const backFrontDirection = useAppSelector(state => state.app.testDirectionTitleValue)
     const testDirectionTitle = titleGenerator(backFrontDirection as string)
 
     const questions = useAppSelector(state => state.questions.questions)
+    const currentQuestion = questions.filter(el => el.id === questionId)[0]
 
-    const currentQuestion = questions[questionId]
-
-    const answersKeys = currentQuestion && Object.keys(currentQuestion.possibleAnswers)
+    const answersKeys = currentQuestion && Object.keys(currentQuestion.answers)
 
     const goToNextQuestion = (skip: string) => {
         setCurrentCheckbox(null)
+        setAnswerId(-1)
 
         const nextQuestionId = questionId + 1
         if (nextQuestionId < questions.length) {
@@ -48,7 +48,8 @@ export const QuestionContainer = () => {
             dispatch(changeQuestionStatus(currentQuestion.id, "idle"))
             return
         }
-        if (`${answerId}` === currentQuestion.rightAnswer) {
+
+        if (currentQuestion.answers[answerId] === currentQuestion.rightAnswer) {
             dispatch(changeQuestionStatus(currentQuestion.id, "right"))
         } else if (`${answerId}` !== currentQuestion.rightAnswer) {
             dispatch(changeQuestionStatus(currentQuestion.id, "wrong"))
@@ -60,7 +61,7 @@ export const QuestionContainer = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            dispatch(fetchQuestions(Questions))
+            dispatch(fetchQuestions(data))
         }, 1000)
 
     }, [])
@@ -72,14 +73,14 @@ export const QuestionContainer = () => {
                     ? <Preloader/>
                     : <StyledQuestionContainer>
 
-                        <BackToTestChoice/>
+                        {/*<BackToTestChoice/>*/}
 
-                        <Title value={`Тест по направлению ${testDirectionTitle}`}/>
+                        <Title value={`Тест на интуицию`}/>
 
                         <ProgressBar id={questionId}/>
 
                             {/*Текст вопроса*/}
-                            {currentQuestion.body}
+                            {currentQuestion.question}
 
                         <Wrapper>
                             {
@@ -88,7 +89,7 @@ export const QuestionContainer = () => {
                                                           answerId={+el}
                                                           setCurrentCheckbox={setCurrentCheckbox}
                                                           currentCheckbox={currentCheckbox}
-                                                          answers={currentQuestion.possibleAnswers}
+                                                          answers={currentQuestion.answers}
                                                           selectAnswer={setAnswerId}
                                     />
                                 })}

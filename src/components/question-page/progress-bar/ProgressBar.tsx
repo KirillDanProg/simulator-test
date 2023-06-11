@@ -15,9 +15,7 @@ type StepperPropsType = {
 export const ProgressBar: FC<StepperPropsType> = ({id}) => {
 
     const questions = useAppSelector(state => state.questions.questions)
-
-    // +1 because of index of questions array starts with zero
-    const questionId = id + 1
+    const questionId = id
 
     return (
         <StyledProgressBar>

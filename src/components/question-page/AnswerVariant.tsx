@@ -25,13 +25,13 @@ type AnswerPropsType = {
     answerId: number
     currentCheckbox: Nullable<number>
     setCurrentCheckbox: (cur: Nullable<number>) => void
-    answers: { [key: string]: string }
-    selectAnswer: (answerId: Nullable<number>) => void
+    answers: string[]
+    selectAnswer: (answerId: number) => void
 }
 
 export const AnswerVariant: FC<AnswerPropsType> = (props) => {
 
-    const selectAnswerHandler = (answerId: Nullable<number>) => {
+    const selectAnswerHandler = (answerId: number) => {
         props.selectAnswer(answerId)
         props.setCurrentCheckbox(answerId)
     }

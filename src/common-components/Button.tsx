@@ -4,7 +4,7 @@ import {device} from "../app/media-query";
 
 export const StyledButton = styled.button<ButtonPropsType>`
   all: unset;
-  border-radius: 5px;
+  border-radius: 15px;
   text-align: center;
   cursor: pointer;
   width: fit-content;
@@ -23,7 +23,12 @@ export const StyledButton = styled.button<ButtonPropsType>`
   &:active {
     background-color: #006aff;
   }
-
+  ${props => props.className === 'start-btn' && `
+        font-size: 30px;
+        margin: 20px auto;
+        display: block;
+        
+  `}
   ${props => props.variant === "outlined" && `
         color: #0066CC;
         border: 3px solid #0066CC;
@@ -35,6 +40,7 @@ export const StyledButton = styled.button<ButtonPropsType>`
 `
 
 type ButtonPropsType = {
+    className: string
     callback: () => void
     color?: string
     variant?: string

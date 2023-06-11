@@ -12,7 +12,7 @@ const StyledTitle = styled.div`
   font-weight: 500;
   line-height: 25px;
   text-align: center;
-  margin-top: 30px;
+  margin-bottom: 30px;
 `
 
 export const Title: FC<TitlePropsType> = ({value, type, className, ...restProps}) => {

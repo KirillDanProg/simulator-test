@@ -3,8 +3,8 @@ import {QuestionsAction} from "./ActionConstants";
 
 export type QuestionType = {
     id: number
-    body: string
-    possibleAnswers: PossibleAnswersType
+    answers: string[]
+    question: string
     rightAnswer: string
     status: QuestionStatusType
     chosenAnswer?: Nullable<number>
@@ -76,3 +76,40 @@ export const saveChosenAnswer = (questionId: number, answerId: Nullable<number>)
 type ActionsType = ReturnType<typeof changeQuestionStatus>
     | ReturnType<typeof fetchQuestions>
     | ReturnType<typeof saveChosenAnswer>
+
+
+// import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+//
+// interface Question {
+//     id: number;
+//     status: string;
+//     chosenAnswer: string | null;
+// }
+//
+// interface InitialStateType {
+//     questions: Question[];
+// }
+//
+// const initialState: InitialStateType = {
+//     questions: []
+// };
+//
+// const questionsSlice = createSlice({
+//     name: 'questions',
+//     initialState,
+//     reducers: {
+//         changeQuestionStatus: (state, action: PayloadAction<{ questionId: number, status: string }>) => {
+//             state.questions[action.payload.questionId].status = action.payload.status
+//         },
+//         fetchQuestions: (state, action: PayloadAction<{ questions: Question[] }>) => {
+//             state.questions = action.payload.questions;
+//         },
+//         saveChosenAnswer: (state, action: PayloadAction<{ questionId: number, answerId: string }>) => {
+//             state.questions[action.payload.questionId].chosenAnswer = action.payload.answerId
+//         }
+//     }
+// });
+//
+// export const {changeQuestionStatus, fetchQuestions, saveChosenAnswer} = questionsSlice.actions;
+//
+// export default questionsSlice.reducer;

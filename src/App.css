@@ -1,6 +1,6 @@
 #root {
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 * {
     box-sizing: border-box;
@@ -29,4 +29,9 @@ body {
     width: 30px;
     margin-right: 3px;
     fill: #80BFFF;
+}
+
+.text {
+    font-size: 22px;
+    margin-bottom: 30px;
 }

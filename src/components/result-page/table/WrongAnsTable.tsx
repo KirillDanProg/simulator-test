@@ -20,7 +20,7 @@ export const WrongAnsTable = () => {
 
                 <tbody>
                 {wrongQuestions.map(el => {
-                        const chosen = el.possibleAnswers[`${el.chosenAnswer}`]
+                        const chosen = 'null'
                         return (<tr key={el.id}>
                             <td className="td-id">{el.id}</td>
                             <td className="td-ans">

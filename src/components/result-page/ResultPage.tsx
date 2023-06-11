@@ -47,16 +47,26 @@ const StyledResultPage = styled.div`
 export const ResultPage = () => {
     const questions = useAppSelector(state => state.questions.questions)
     const rightQuestions = questions.filter(el => el.status === "right").length
-    const result = 100 / questions.length * rightQuestions
+    const result = Math.round(100 / questions.length * rightQuestions)
 
     const backFrontDirection = useAppSelector(state => state.app.testDirectionTitleValue)
     const testDirectionTitle = titleGenerator(backFrontDirection as string)
 
 
+    let resultContent;
+
+    if (result <= 2) {
+        resultContent = 'К сожалению, ваши эзотерические  способности пока отсутствуют, но это еще не повод отчаиваться, это лишь говорит о том, что пока вы не готовы к  этой  деятельности.\n'
+    } else if (result <= 6) {
+        resultContent = 'Вероятно у вас есть эзотерические способности, но они в спящем режиме, и нужно их пробудить путем тренировок и упражнений.'
+    } else if (result >= 7) {
+        resultContent = 'Поздравляю!!! У вас есть эзотерические  способности, и вы можете заниматься такой  деятельностью,как таро только нужно пройти обучение и набраться знаний и практики.'
+    }
+
     return (
         <StyledResultPage>
 
-            <Title value={`Тест по направлению ${testDirectionTitle}`}
+            <Title value={`Тест на интуицию`}
                    className="title positioned"/>
 
             <Container width="756px">
@@ -74,7 +84,9 @@ export const ResultPage = () => {
                         </Wrapper>
                     </Wrapper>
                 </Flex>
-                <WrongAnsTable/>
+
+                <p className='text'>{resultContent}</p>
+                {/*<WrongAnsTable/>*/}
             </Container>
         </StyledResultPage>
     );
