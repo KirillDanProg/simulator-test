@@ -9,7 +9,7 @@ export const StyledQuestionContainer = styled.div<any>`
   gap: ${props => props.gap || "45px"};
   
   @media ${device.tablet} {
-    width: 100%;
+    width: 500px;
     gap: 30px;
   }
 
