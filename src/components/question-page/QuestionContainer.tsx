@@ -69,7 +69,7 @@ export const QuestionContainer = () => {
     return (
         <Container width={"756px"}>
             {
-                true
+                !currentQuestion
                     ? <Preloader/>
                     : <StyledQuestionContainer>
 
