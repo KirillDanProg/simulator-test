@@ -6,7 +6,10 @@ import {device} from "../../app/media-query";
 
 
 const StyledLayout = styled.div`
-  padding: 0 10px;
+  padding: 0;
+  .wrapper {
+    padding: 0 10px;
+  }
   @media ${device.tablet} {
     .wrapper  {
       padding: 0 300px;
