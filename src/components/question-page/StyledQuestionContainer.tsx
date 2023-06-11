@@ -7,6 +7,7 @@ export const StyledQuestionContainer = styled.div<any>`
   flex-direction: column;
   justify-content: start;
   width: 100%;
+  height: 80vh;
   gap: ${props => props.gap || "45px"};
   
   @media ${device.tablet} {
