@@ -6,10 +6,11 @@ export const StyledQuestionContainer = styled.div<any>`
   display: flex;
   flex-direction: column;
   justify-content: start;
+  width: 100%;
   gap: ${props => props.gap || "45px"};
   
   @media ${device.tablet} {
-    width: 500px;
+    width: 700px;
     gap: 30px;
   }
 

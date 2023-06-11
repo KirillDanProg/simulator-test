@@ -80,7 +80,7 @@ export const QuestionContainer = () => {
                         <ProgressBar id={questionId}/>
 
                             {/*Текст вопроса*/}
-                            {currentQuestion.question}
+                           <p className='text'> {currentQuestion.question}</p>
 
                         <Wrapper>
                             {
