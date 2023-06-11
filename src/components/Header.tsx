@@ -15,11 +15,14 @@ const StyledHeader = styled.div`
   .logo {
     text-align: center;
     color: #016dba;
+    font-size: 18px;
   }
 
-  //
-    // @media ${device.tablet} {
-  // }
+  @media ${device.tablet} {
+  .logo {
+    font-size: 25px;
+  }
+  }
 `
 export const Header = () => {
     return (

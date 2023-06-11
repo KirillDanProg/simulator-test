@@ -7,7 +7,6 @@ import {Wrapper} from "../../common-components/Wrapper";
 
 
 const StyledPossibleAnswer = styled.div`
-  
   margin-bottom: 10px;
   padding: 10px;
   background-color: #fff;

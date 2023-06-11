@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
+import {device} from "../app/media-query";
 
 type TitlePropsType = {
     type?: "front" | "back" | null
@@ -8,11 +9,17 @@ type TitlePropsType = {
 }
 
 const StyledTitle = styled.div`
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 25px;
+  font-size: 18px;
   text-align: center;
-  margin-bottom: 30px;
+  line-height: 25px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  
+  @media ${device.tablet} {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  
 `
 
 export const Title: FC<TitlePropsType> = ({value, type, className, ...restProps}) => {

@@ -6,6 +6,7 @@ const StyledPreloader = styled.div`
   display: inline-block;
   width: 100px;
   height: 100px;
+  
   &:after {
     content: "";
     display: block;
@@ -37,7 +38,6 @@ const StyledPreloader = styled.div`
 export const Preloader = () => {
     return (
         <StyledPreloader/>
-
     );
 };
 

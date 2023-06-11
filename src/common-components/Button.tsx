@@ -12,8 +12,12 @@ export const StyledButton = styled.button<ButtonPropsType>`
 
   @media ${device.tablet} {
     padding: ${props => props.padding};
+    ${props => props.className === 'start-btn' && `
+        font-size: 30px;
+        margin: 20px auto;
+        display: block;
+  `}
   }
-
   &:hover {
     transition: 0.3s;
     background-color: #1489ff;
@@ -24,7 +28,7 @@ export const StyledButton = styled.button<ButtonPropsType>`
     background-color: #006aff;
   }
   ${props => props.className === 'start-btn' && `
-        font-size: 30px;
+        font-size: 24px;
         margin: 20px auto;
         display: block;
         
