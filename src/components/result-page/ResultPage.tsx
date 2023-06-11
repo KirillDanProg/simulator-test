@@ -71,7 +71,7 @@ export const ResultPage = () => {
 
             <Container width="756px">
 
-                <Flex direction="column" justify="center" className="result-container">
+                <Flex direction="column" justify="center" className="result-container" wrap='wrap'>
 
                     <ProgressScale value={result}/>
 
@@ -83,9 +83,10 @@ export const ResultPage = () => {
                             }
                         </Wrapper>
                     </Wrapper>
+                    <p className='text'>{resultContent}</p>
                 </Flex>
 
-                <p className='text'>{resultContent}</p>
+
                 {/*<WrongAnsTable/>*/}
             </Container>
         </StyledResultPage>

@@ -8,6 +8,7 @@ type FlexPropsType = {
     gap?: string
     position?: string
     direction?: string
+    wrap?: string
     children?: JSX.Element[] | JSX.Element
     padding?: string
     className?: string
@@ -19,7 +20,7 @@ const StyledFlex = styled.div<FlexPropsType>`
   justify-content: ${props => props.justify || "center"};
   align-items: ${props => props.align || "center"};
   text-align: center;
-  gap: 5px;
+  gap: 15px;
 
   
 
@@ -33,7 +34,12 @@ const StyledFlex = styled.div<FlexPropsType>`
     position: absolute;
     top: 0;
     left: 0;
-  `} @media ${device.tablet} {
+  `}
+  ${props => props.wrap === "wrap" && `
+   flex-wrap: wrap;
+  `}
+  
+  @media ${device.tablet} {
     display: flex;
     align-items: ${props => props.align || "center"};
     justify-content: ${props => props.justify || "center"};

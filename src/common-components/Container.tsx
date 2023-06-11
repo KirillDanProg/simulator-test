@@ -12,9 +12,8 @@ export const StyledContainer = styled.div<ContainerPropsType>`
   min-height: calc(100vh - 70px);
   margin: 0 auto;
   padding: 0 10px;
-
+  place-content: center;
   @media ${device.tablet} {
-    place-items: center;
     width: ${props => props.width};
   }
 `
